@@ -1,0 +1,230 @@
+/* 🌐 Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f6fa;
+  color: #333;
+}
+
+/* 🔹 Navbar */
+nav {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 16px 25px;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
+}
+
+/* 🔹 Sidebar */
+.sidebar {
+  width: 230px;
+  background-color: #ffffff;
+  height: 100vh;
+  padding: 25px 15px;
+  border-right: 1px solid #ddd;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.sidebar h2 {
+  color: #1e3a8a;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.sidebar a {
+  display: block;
+  color: #1e3a8a;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #e0e7ff;
+  color: #111827;
+}
+
+/* 🔹 Page Layout */
+.page-content {
+  margin-left: 230px;
+  padding: 20px;
+}
+
+/* 🔹 Headings */
+h1,
+h2,
+h3 {
+  color: #1e3a8a;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Buttons */
+button {
+  background-color: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #3b82f6;
+}
+
+/* 🔹 Login Page */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  color: white;
+}
+
+.login-container h1 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.login-container form {
+  background-color: white;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-container label {
+  font-weight: 500;
+}
+
+.login-container select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-container button {
+  margin-top: 15px;
+}
+
+/* 🔹 Job Listing Cards */
+.job-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.job-card h3 {
+  color: #1e3a8a;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.job-card p {
+  font-size: 15px;
+  color: #555;
+}
+
+/* 🔹 Tables (Work Hours) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+th {
+  background-color: #1e3a8a;
+  color: white;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* 🔹 Lists (Applications Page) */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* 🔹 Admin Dashboard */
+.admin-section {
+  padding: 20px;
+}
+
+.admin-section p {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .page-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  nav {
+    font-size: 16px;
+    padding: 12px 15px;
+  }
+
+  .login-container form {
+    width: 85%;
+  }
+}

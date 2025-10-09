@@ -1,0 +1,14 @@
+body { margin: 0; font-family: Inter, Arial, sans-serif; background: #f6f7fb;}
+.dashboard-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.7rem; }
+.dashboard-section { background: #fff; border-radius: 10px; margin-bottom: 1.5rem; padding: 1.3rem 1.7rem; }
+.section-title { font-size: 1.2rem; color: #032862; margin-bottom: 10px; }
+.stats-card { display: flex; gap: 2rem; }
+.stats-item { background: #f4f6fa; border-radius: 10px; padding: 15px 25px; text-align: center; flex: 1; color: #24345c; }
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: 8px 16px; border-bottom: 1px solid #ebecf0; }
+.table th { background: #f8fafc; }
+.tag { border-radius: 5px; padding: 2.5px 10px; font-size: 13px; font-weight: 600;}
+.active { background: #c4f2e4; color: #076e37;}
+.closed { background: #f4b0b0; color: #7a1818;}
+.button { padding: 0.5rem 1.3rem; background: #032862; color: #fff; border: none; border-radius: 5px; cursor: pointer;}
+.logout { color: #ef4444; background: none; border: none; font-weight: bold; cursor: pointer;}
