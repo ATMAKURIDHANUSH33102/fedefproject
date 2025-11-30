@@ -191,6 +191,8 @@ export default function Login() {
           >
             Sign up
           </span>
+          <br />
+          (Or use the demo accounts above by refreshing the page)
         </p>
       </form>
     </div>
