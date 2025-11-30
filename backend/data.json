@@ -97,6 +97,13 @@
       "email": "2400033102@kluniversity.innnnnn",
       "password": "12345",
       "role": "admin"
+    },
+    {
+      "id": "f2b51c27-e1dd-4c31-afed-13225d6fc107",
+      "name": "qwefg",
+      "email": "2400033102@kl",
+      "password": "12345",
+      "role": "admin"
     }
   ],
   "jobs": [

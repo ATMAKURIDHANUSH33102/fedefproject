@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Ensure data.json exists with seed data
+/* ---------- Data file helpers ---------- */
 function ensureDataFile() {
   if (!fs.existsSync(DATA_PATH)) {
     const seed = {
@@ -37,34 +37,48 @@ function ensureDataFile() {
 ensureDataFile();
 
 function readData() {
-  const raw = fs.readFileSync(DATA_PATH);
+  const raw = fs.readFileSync(DATA_PATH, "utf8");
   return JSON.parse(raw);
 }
 function writeData(obj) {
   fs.writeFileSync(DATA_PATH, JSON.stringify(obj, null, 2));
 }
 
-/* --- Auth (demo) --- */
+/* ---------- Auth (demo) ---------- */
 app.post("/api/auth/signup", (req, res) => {
   const { name, email, password, role = "student" } = req.body;
-  if (!email || !password || !name) return res.status(400).json({ error: "name,email,password required" });
+  if (!email || !password || !name)
+    return res.status(400).json({ error: "name,email,password required" });
+
   const data = readData();
-  if (data.users.find(u => u.email === email)) return res.status(409).json({ error: "email exists" });
+  if (data.users.find(u => u.email === email))
+    return res.status(409).json({ error: "email exists" });
+
   const user = { id: uuidv4(), name, email, password, role };
   data.users.push(user);
   writeData(data);
-  res.json({ ok: true, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+
+  res.json({
+    ok: true,
+    user: { id: user.id, name: user.name, email: user.email, role: user.role }
+  });
 });
 
 app.post("/api/auth/login", (req, res) => {
   const { email, password } = req.body;
   const data = readData();
   const user = data.users.find(u => u.email === email && u.password === password);
+
   if (!user) return res.status(401).json({ error: "invalid credentials" });
-  res.json({ ok: true, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+
+  res.json({
+    ok: true,
+    role: user.role,
+    user: { id: user.id, name: user.name, email: user.email, role: user.role }
+  });
 });
 
-/* --- Jobs --- */
+/* ---------- Jobs ---------- */
 app.get("/api/jobs", (req, res) => {
   const data = readData();
   res.json(data.jobs);
@@ -98,7 +112,7 @@ app.delete("/api/jobs/:id", (req, res) => {
   res.json({ ok: true });
 });
 
-/* --- Applications --- */
+/* ---------- Applications ---------- */
 app.get("/api/applications", (req, res) => {
   const data = readData();
   res.json(data.applications);
@@ -133,7 +147,7 @@ app.put("/api/applications/:id", (req, res) => {
   res.json(data.applications[idx]);
 });
 
-/* --- Timesheets --- */
+/* ---------- Timesheets ---------- */
 app.get("/api/timesheets", (req, res) => {
   const data = readData();
   res.json(data.timesheets);
@@ -149,8 +163,67 @@ app.post("/api/timesheets", (req, res) => {
   res.json(entry);
 });
 
-/* --- misc --- */
+/* ---------- misc ---------- */
 app.get("/api/ping", (req, res) => res.json({ ok: true, now: new Date().toISOString() }));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`SkillTrack backend listening on ${PORT}`));
+/* ---------- Server start with EADDRINUSE handling ---------- */
+const BASE_PORT = Number(process.env.PORT) || 5000;
+const MAX_TRIES = 10; // will attempt BASE_PORT .. BASE_PORT + MAX_TRIES - 1
+
+let server = null;
+
+function startServer(port, triesLeft) {
+  if (triesLeft <= 0) {
+    console.error(`Unable to bind to a port after multiple attempts. Exiting.`);
+    process.exit(1);
+  }
+
+  server = app.listen(port, () => {
+    console.log(`SkillTrack backend listening on port ${port}`);
+  });
+
+  server.on("error", (err) => {
+    if (err && err.code === "EADDRINUSE") {
+      console.warn(`Port ${port} in use — trying port ${port + 1} (${triesLeft - 1} tries left)...`);
+      // small delay before retry to avoid race conditions
+      setTimeout(() => {
+        startServer(port + 1, triesLeft - 1);
+      }, 300);
+    } else {
+      console.error("Server error:", err);
+      process.exit(1);
+    }
+  });
+}
+
+startServer(BASE_PORT, MAX_TRIES);
+
+/* ---------- Graceful shutdown ---------- */
+function shutdown() {
+  console.log("Shutting down server...");
+  if (server && server.close) {
+    server.close(() => {
+      console.log("HTTP server closed.");
+      process.exit(0);
+    });
+    // force exit if not closed in 3s
+    setTimeout(() => {
+      console.warn("Forcing shutdown.");
+      process.exit(1);
+    }, 3000).unref();
+  } else {
+    process.exit(0);
+  }
+}
+
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);
+
+// helpful for debugging unhandled rejections
+process.on("unhandledRejection", (reason, p) => {
+  console.error("Unhandled Rejection at:", p, "reason:", reason);
+});
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught Exception:", err);
+  // optionally exit: process.exit(1);
+});
