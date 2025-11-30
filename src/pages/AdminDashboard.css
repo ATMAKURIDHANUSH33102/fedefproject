@@ -167,3 +167,36 @@ body {
     font-size:0.97em;
     color:#7890b3;
 }
+.sidebar li.active-link {
+  background: #2b44b2;
+  color: #fff;
+  font-weight: 600;
+}.tag {
+  background: #e8edff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.tag.pending { background: #fff4d5; color: #b68e02; }
+.tag.approved { background: #d9edff; color: #1468a0; }
+.tag.active { background: #d6f5e7; color: #027a4b; }
+.tag.closed { background: #ffdfdf; color: #b92b2b; }
+
+.card-sub { color: #7c8aad; font-size: 0.85rem; }
+
+.pending-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.small-label { color: #7c8aad; font-size: 0.9em; }
+
+.active-link {
+  background: #2b44b2;
+  color: #fff;
+  font-weight: 600;
+}
+

@@ -1,32 +1,53 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
 import StudentDashboard from "../pages/StudentDashboard";
 import AdminDashboard from "../pages/AdminDashboard";
 
 export default function AppRoutes() {
-  const [userRole, setUserRole] = useState(sessionStorage.getItem("role"));
+  const [role, setRole] = useState(sessionStorage.getItem("role"));
 
-  // This keeps userRole fresh after login navigation
+  // Sync role when sessionStorage changes
   useEffect(() => {
-    const checkRole = () => setUserRole(sessionStorage.getItem("role"));
-    window.addEventListener("storage", checkRole);
-    return () => window.removeEventListener("storage", checkRole);
+    const updateRole = () => setRole(sessionStorage.getItem("role"));
+    window.addEventListener("storage", updateRole);
+
+    return () => window.removeEventListener("storage", updateRole);
   }, []);
 
-  // Also check role after every render, in case login just set it
+  // Also refresh role after each login
   useEffect(() => {
-    setUserRole(sessionStorage.getItem("role"));
+    setRole(sessionStorage.getItem("role"));
   });
 
   return (
     <BrowserRouter>
       <Routes>
+        
+        {/* PUBLIC ROUTES */}
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/student" element={userRole==="student" ? <StudentDashboard /> : <Navigate to="/" />} />
-        <Route path="/admin" element={userRole==="admin" ? <AdminDashboard /> : <Navigate to="/" />} />
+
+        {/* STUDENT DASHBOARD */}
+        <Route
+          path="/student"
+          element={
+            role === "student" ? <StudentDashboard /> : <Navigate to="/" />
+          }
+        />
+
+        {/* ADMIN DASHBOARD */}
+        <Route
+          path="/admin"
+          element={
+            role === "admin" ? <AdminDashboard /> : <Navigate to="/" />
+          }
+        />
+
+        {/* FALLBACK */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

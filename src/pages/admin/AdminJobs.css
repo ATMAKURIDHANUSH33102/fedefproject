@@ -1,0 +1,158 @@
+/* Page layout */
+.admin-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f6f8fb;
+  font-family: Inter, Arial, sans-serif;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 260px;
+  background: #1148a6;
+  color: #fff;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.admin-sidebar .brand {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.admin-sidebar nav { display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+.side-btn {
+  background: transparent;
+  color: #cfe3ff;
+  border: none;
+  padding: 10px 12px;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.side-btn:hover { background: rgba(255,255,255,0.04); color: #fff; }
+.side-btn.active { background: rgba(255,255,255,0.06); color: #fff; font-weight:600; }
+
+/* Main content */
+.admin-main {
+  flex: 1;
+  padding: 26px 36px;
+}
+
+/* Header */
+.admin-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: 18px;
+}
+.admin-header h1 { margin:0; font-size: 28px; color: #15345a; }
+.admin-header .sub { margin:4px 0 0; color: #6e82a3; font-size: 0.95rem; }
+
+.header-actions {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.role-pill { background:#eef6ff; color:#1148a6; padding:6px 10px; border-radius:18px; font-weight:600; }
+.btn {
+  background:#1148a6;
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn.outline { background: transparent; border:1px solid #d6e7ff; color:#1148a6; }
+.btn.small { padding:6px 10px; font-size:0.95rem; }
+
+/* Controls area */
+.controls {
+  display:flex;
+  gap:18px;
+  align-items:center;
+  margin-bottom:18px;
+}
+.search-box {
+  display:flex;
+  gap:8px;
+  flex: 1 1 60%;
+  align-items:center;
+}
+.search-box input {
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid #e3eaf6;
+  background:#fff;
+}
+.filters {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.filters select { padding:10px; border-radius:8px; border:1px solid #e7eefc; background:#fff; }
+
+/* Form */
+.job-form {
+  background:#fff;
+  border-radius:12px;
+  padding:16px;
+  box-shadow: 0 6px 20px rgba(18,45,88,0.05);
+  margin-bottom:18px;
+  border:1px solid #eef3fb;
+}
+.form-row { display:flex; gap:12px; margin-bottom:10px; }
+.form-row label { flex:1; display:flex; flex-direction:column; gap:6px; font-size:0.9rem; color:#415070; }
+.form-row input, .form-row select { padding:10px 12px; border-radius:8px; border:1px solid #e6eefb; background:#fff; }
+
+/* Jobs card and table */
+.jobs-card { background: transparent; }
+.jobs-card h2 { margin:0 0 12px; color:#223a5b; }
+.jobs-table-wrap { background:#fff; border-radius:12px; padding:18px; border:1px solid #eef3fb; box-shadow:0 6px 20px rgba(18,45,88,0.03); }
+.jobs-table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:0.98rem;
+}
+.jobs-table thead th {
+  text-align:left;
+  padding:12px 14px;
+  color:#6f88a8;
+  font-weight:600;
+  border-bottom:1px solid #f0f4fb;
+}
+.jobs-table tbody td {
+  padding:14px;
+  border-bottom:1px solid #f6f9ff;
+  vertical-align: middle;
+}
+.job-title { font-weight:700; color:#17314f; }
+.job-sub { color:#92a3bf; font-size:0.9rem; margin-top:6px; }
+
+/* badges & actions */
+.badge {
+  padding:6px 12px;
+  border-radius:16px;
+  font-weight:700;
+  font-size:0.86rem;
+  display:inline-block;
+  text-transform: lowercase;
+}
+.badge.active { background:#e7f8f1; color:#056a3f; }
+.badge.closed { background:#f8eef0; color:#8b2d2d; }
+
+.actions { display:flex; gap:8px; }
+.icon-btn { border:none; background:transparent; padding:6px; cursor:pointer; border-radius:6px; }
+.icon-btn:hover { background: #f2f6ff; }
+.icon-btn.danger:hover { background: #fff2f2; }
+
+/* responsive */
+@media (max-width: 980px) {
+  .admin-sidebar { display:none; }
+  .admin-main { padding:18px; margin-left:0; }
+  .form-row { flex-direction:column; }
+  .controls { flex-direction:column; align-items:stretch; gap:12px; }
+}

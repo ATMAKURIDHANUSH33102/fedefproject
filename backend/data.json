@@ -1,0 +1,154 @@
+{
+  "users": [
+    {
+      "id": "u-admin",
+      "name": "Admin",
+      "email": "admin@demo",
+      "password": "admin",
+      "role": "admin"
+    },
+    {
+      "id": "u-student",
+      "name": "Demo Student",
+      "email": "student@demo",
+      "password": "student",
+      "role": "student"
+    },
+    {
+      "id": "7d9ede5c-ecdf-4195-966f-325e49b886e8",
+      "name": "Atmakuri Dhanush ",
+      "email": "2400033102@kluniversity.in",
+      "password": "12345",
+      "role": "admin"
+    },
+    {
+      "id": "3911b470-6486-45bf-9073-d3f55b536fbd",
+      "name": "wertg",
+      "email": "2400033102@kluniversity",
+      "password": "12345",
+      "role": "admin"
+    },
+    {
+      "id": "f63e2873-d030-4f53-8d7b-05a3d7519983",
+      "name": "wertg",
+      "email": "2400033102@kluniversit",
+      "password": "12345",
+      "role": "student"
+    },
+    {
+      "id": "56571407-9276-454a-942c-521b75e78c5e",
+      "name": "asjhfgbv",
+      "email": "2400033102@kluniversity.i",
+      "password": "12345",
+      "role": "admin"
+    },
+    {
+      "id": "5cd336d9-1324-4996-b1df-6799958261cd",
+      "name": "edfg",
+      "email": "2400033102@kluniversity.inn",
+      "password": "123456",
+      "role": "admin"
+    },
+    {
+      "id": "0be20ec5-6bdc-48e9-9e4d-e1f578eb8c66",
+      "name": "qwe",
+      "email": "atmakuridhanush8@gmail.com",
+      "password": "123456",
+      "role": "student"
+    },
+    {
+      "id": "bb03b6a6-ffe9-4af0-b14e-7e860a1bfd2a",
+      "name": "sfsf",
+      "email": "2400033102@kluniversity.innn",
+      "password": "12345",
+      "role": "admin"
+    },
+    {
+      "id": "818095ce-59bf-4407-9237-4b38547f8b87",
+      "name": "wsd",
+      "email": "2400033102@kluniversity.innnn",
+      "password": "12345",
+      "role": "student"
+    },
+    {
+      "id": "173f297d-d1db-4fec-9320-802e87bcc709",
+      "name": "2wf",
+      "email": "2400033102@kluniversi",
+      "password": "12345",
+      "role": "admin"
+    },
+    {
+      "id": "2ca84c80-cb3a-4cd6-b65e-9c8f121af0af",
+      "name": "erf",
+      "email": "2400033102@kluniversity.innnnn",
+      "password": "12345",
+      "role": "student"
+    },
+    {
+      "id": "9d880f2c-ec1d-4395-b813-65641470031d",
+      "name": "asjhfgbv",
+      "email": "2400033102@klunivers",
+      "password": "12345",
+      "role": "student"
+    },
+    {
+      "id": "c95f8f62-7dba-4c1d-b0ee-c2e8b1090a3b",
+      "name": "asjhfgbv",
+      "email": "2400033102@kluniversity.innnnnn",
+      "password": "12345",
+      "role": "admin"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "j1",
+      "title": "Library Assistant",
+      "dept": "University Library",
+      "stipend": 15,
+      "hours": 10,
+      "status": "active",
+      "posted_at": "2024-01-15"
+    },
+    {
+      "id": "j2",
+      "title": "Research Assistant",
+      "dept": "Biology Department",
+      "stipend": 18,
+      "hours": 15,
+      "status": "active",
+      "posted_at": "2024-01-10"
+    },
+    {
+      "id": "j3",
+      "title": "Lab Technician",
+      "dept": "Chemistry Department",
+      "stipend": 16,
+      "hours": 12,
+      "status": "closed",
+      "posted_at": "2024-01-05"
+    }
+  ],
+  "applications": [
+    {
+      "id": "a1",
+      "jobId": "j1",
+      "jobTitle": "Library Assistant",
+      "studentId": "u-student",
+      "studentName": "Demo Student",
+      "applied_at": "2024-01-15",
+      "status": "pending"
+    }
+  ],
+  "timesheets": [
+    {
+      "id": "t1",
+      "jobId": "j2",
+      "studentId": "u-student",
+      "job_title": "Research Assistant",
+      "date": "2024-01-20",
+      "hours": 4,
+      "status": "approved",
+      "feedback": "Good job"
+    }
+  ]
+}
